@@ -1,8 +1,10 @@
-package model.item.vehicle;
+package model.item.vehicle.bike;
+
+import model.item.vehicle.Vehicle;
 
 import java.math.BigDecimal;
 
-public class Motorcycle extends Vehicle{
+public class Motorcycle extends Vehicle {
 
     private boolean isApproved;
 
