@@ -1,11 +1,14 @@
 package model.item;
 
+import model.Room;
+
 import java.math.BigDecimal;
 
 public class Item {
 
     private String name;
     private BigDecimal volume;
+    private Room room;
 
     public Item(String name, BigDecimal volume) {
         this.name = name;
@@ -18,6 +21,18 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getVolume() {
+        return volume;
+    }
+
+    public void setVolume(BigDecimal volume) {
+        this.volume = volume;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     public void changeVolume() {
@@ -46,5 +61,9 @@ public class Item {
                 "name='" + name + '\'' +
                 ", volume=" + volume  + " m3" +
                 '}';
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
