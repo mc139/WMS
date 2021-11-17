@@ -1,5 +1,8 @@
 package model;
 
+import lombok.ToString;
+
+@ToString
 public class Address {
 
     private String street;
@@ -17,13 +20,4 @@ public class Address {
 
     }
 
-
-    @Override
-    public String toString() {
-        return "{"+
-                "street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", number='" + number + '\'' +
-                '}';
-    }
 }
