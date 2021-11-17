@@ -47,7 +47,7 @@ public class Person implements Serializable {
     }
 
     public static List<Room> getRooms(Person person) {
-        return  Optional.ofNullable(person.getRooms()).orElse(Collections.emptyList()).stream()
+        return Optional.ofNullable(person.getRooms()).orElse(Collections.emptyList()).stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
@@ -59,58 +59,6 @@ public class Person implements Serializable {
                 .map(Room::getDateOfRenting)
                 .min(Comparator.naturalOrder()).orElseThrow(() -> new DateNofFoundException("Could not find a date!"));
     }
-
-//    public List<Room> getRooms() {
-//        return rooms;
-//    }
-//
-//    public void setRooms(List<Room> rooms) {
-//        this.rooms = rooms;
-//    }
-//
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public String getSurname() {
-//        return surname;
-//    }
-//
-//    public void setSurname(String surname) {
-//        this.surname = surname;
-//    }
-//
-//    public String getPeselNumber() {
-//        return peselNumber;
-//    }
-//
-//    public void setPeselNumber(String peselNumber) {
-//        this.peselNumber = peselNumber;
-//    }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-//
-//    public LocalDate getBirthDate() {
-//        return birthDate;
-//    }
-//
-//    public void setBirthDate(LocalDate birthDate) {
-//        this.birthDate = birthDate;
-//    }
-//
-//    public void setFirstRentDate(LocalDate firstRentDate) {
-//        this.firstRentDate = firstRentDate;
-//    }
 
     public LocalDate getFirstRentDate() {
         if (rooms.isEmpty()) {
