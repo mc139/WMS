@@ -1,10 +1,11 @@
 package model.item.vehicle.bike;
 
+import lombok.EqualsAndHashCode;
 import model.item.vehicle.Vehicle;
 
 import java.math.BigDecimal;
 
-public class Bicycle  extends Vehicle {
+public class Bicycle extends Vehicle {
 
     private int numberOfGears;
 
@@ -26,11 +27,6 @@ public class Bicycle  extends Vehicle {
     }
 
     @Override
-    public void changeVolume() {
-        this.setVolume(getVolume().divide(BigDecimal.valueOf(2),0));
-    }
-
-    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + numberOfGears;
@@ -38,9 +34,14 @@ public class Bicycle  extends Vehicle {
     }
 
     @Override
+    public void changeVolume() {
+        this.setVolume(getVolume().divide(BigDecimal.valueOf(2), 0));
+    }
+
+    @Override
     public String toString() {
         return "Bicycle{" +
                 "numberOfGears=" + numberOfGears +
-                "} " ;
+                "} ";
     }
 }

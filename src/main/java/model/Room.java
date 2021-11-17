@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Room implements Serializable {
 
-
     private static final long serialVersionUID = 7264303386964383581L;
 
     private Warehouse warehouse;
@@ -38,7 +37,7 @@ public class Room implements Serializable {
 
     public void rentToPerson(Person person,LocalDate dateOfRenting) {
         if (!this.isOutOfService) {
-            if(person.getRooms().size() == 0 || person.getRooms().isEmpty()){
+            if(person.getRooms().isEmpty()){
                 person.setFirstRentDate(dateOfRenting);
             }
             this.setPerson(person);

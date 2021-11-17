@@ -1,19 +1,55 @@
-//Todo refaktor.."
+//Todo refaktor..
 //github V
 //relacje V
 // zapisaywanie stanu do pliku V
 // cała serializacja V
-// todo UI V
+// powinienem to bardziej rozplanować- szybciej by poszło
+
+// todo UI V (wiekszosć UI juz działa trzeba poprawić bugi i dodać powrót do głownego menu z kazdego ekrany (?))
 //ToDo rozroznienie przedmiotów przy ich dodawaniu w UI (item , vahicle etc)
-//Todo Zawartość pomieszczenia powinna być posortowana malejąco według rozmiaru przedmiotu, jeśli jest taki sam to według nazwy.
-//ToDo Unit Testy
-//ToDo Lombok
+//Todo Zawartość pomieszczenia powinna być posortowana malejąco według rozmiaru przedmiotu, jeśli jest taki sam to według nazwy.(wystarczy jedern comparator)
+//ToDo Unit Testy (Najpierw doprowadzić do stanu uzywalności a potem dopiero pisać)
+//ToDo Lombok - (w niektórych klasach mam niestandordowe gettery i ToString wiec tam odpada)
 //ToDo przenoszenie metod do odpowiedznich klas - prawie zrobione
 //Todo zapisawanie do pliku
 //Todo bugi?
+//ToDo refaktor do osobnych metod w klasie UserInterface - prawie skończone
+//ToDo zapisywanie nie działa coś z serializacja - wygooglować to
+//Todo sprawdzić jeszcze raz kod czy wszystko jest zgodnie z dokumentacją(?)
 
-    //ToDo refaktor do osobnych metod w klasie UserInterface
-    //ToDo zapisywanie nie działa coś z serializacja
+// ToDo pytanie branche i pull requesty na GH
+
+// TODO UWAGI KRYSTIANA PONIZEJ ========>
+
+
+
+
+ <======================
+
+Napisz program, który będzie służył do obsługi magazynów. Każdy magazyn ma pomieszczenia do przechowywania przedmiotów lub pojazdów,
+ z czego każde pomieszczenie ma unikalny identyfikator oraz swoją powierzchnię użytkową zapisaną w metrach sześciennych.
+  Każde pomieszczenie może być wynajmowane przez konkretną osobę (obiekt klasy Osoba), chyba że pomieszczenie jest aktualnie wyłączone z użytku (na przykład z powodu remontu).
+  Najemca pomieszczenia może dowolnie wkładać i wyjmować przedmioty oraz pojazdy. Każda osoba może mieć wiele wynajętych pomieszczeń, jednak każde pomieszczenie może mieć tylko jednego najemcę w jednym czasie.
+Należy zapewnić, aby identyfikatory pomieszczeń były unikalne oraz tworzone automatycznie podczas tworzenia obiektu typu Pomieszczenie.
+ Rozmiar pomieszczenia należy dostarczać podczas tworzenia obiektu pomieszczenia. Możliwe są dwa sposoby wskazania rozmiaru pomieszczenia:
+• poprzez podanie objętości w metrach sześciennych
+• poprzez podanie rozmiarów pomieszczenia w postaci długości, szerokości i wysokości
+pomieszczenia (dla uproszczenia zakładamy, że pomieszczenie jest prostopadłościanem).
+ Przy tym podejściu powierzchnia użytkowa pomieszczenia zostaje wyliczona podczas tworzenia obiektu na podstawie przekazanych wartości
+Osoba posiada takie dane jak imię, nazwisko, pesel, adres zamieszkania, datę urodzenia
+oraz datę pierwszego wykonanego przez nią najmu pomieszczenia. W przypadku, gdy osoba nie wynajęła nigdy żadnego pomieszczenia, w sytuacji próby pobrania tej daty powinien zostać rzucony wyjątek NeverRentException.
+Każdy przedmiot ma nazwę oraz o powierzchnię jaką zajmuje.
+ Powierzchnia ta może być dostarczona na dwa sposoby, tak jak w przypadku pomieszczenia.
+  Powierzchnia zajmowana przez określony przedmiot może się zmieniać (przykładowo rower typu składak w zależności od swojego stanu - złożony/rozłożony może zajmować różną powierzchnię).
+Pojazdy dzielą się na: • samochód,
+• motocykl,
+• rower.
+Każdy z pojazdów poza nazwą oraz powierzchnią jaką zajmuje, powinien mieć również zapisane dla siebie cechy charakterystyczne takie jak
+Dla samochodu - czy jest na gaz, benzynę, diesel, czy hybryda.
+Dla motocykli - czy posiada homologację. Dla
+roweru – liczba przerzutek.
+W przypadku wkładania każdego przedmiotu lub pojazdu do pomieszczenia musimy się upewnić, że pomieszczenie jest w stanie pomieścić ten obiekt. Jeśli w pomieszczeniu są już przedmioty/pojazdy przez które pomieszczenie nie jest w stanie pomieścić nowego przedmiotu/pojazdu, zostaje rzucony wyjątek TooManyThingsException.
+Stan magazynu należy zapisywać do pliku stanMagazynu.txt z informacją o pomieszczeniach, osobach je wynajmujących oraz przedmiotach się w nich znajdujących. Informacje zapisane w pliku powinny być zapisane przejrzyście i czytelnie
 
 
  Zawartość pomieszczenia powinna być posortowana malejąco według rozmiaru przedmiotu, jeśli jest taki sam to według nazwy.

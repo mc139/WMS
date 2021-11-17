@@ -80,7 +80,7 @@ public class Serialization {
         List<Room> rooms = Room.roomExtension;
 
         //room 1-10 person 1-5
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("objects.bin"))){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("objects1.bin"))){
                 oos.writeObject(warehouses);
                 oos.writeObject(items);
                 oos.writeObject(rooms);

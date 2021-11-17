@@ -1,10 +1,13 @@
 package model;
 
-import model.item.Item;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,13 +15,15 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@EqualsAndHashCode(exclude = "rooms")
+@FieldNameConstants
+@ToString
 public class Warehouse implements Serializable {
-
 
     private static final long serialVersionUID = -8100311072752220759L;
 
     private String name;
-    private List<Room> rooms= new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
     public static List<Warehouse> warehouseExtention = new ArrayList<>();
 
     public static List<Room> getListOfEmptyRooms(Warehouse warehouse) {
@@ -37,7 +42,7 @@ public class Warehouse implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         rooms.add(room);
         room.setWarehouse(this);
     }
@@ -63,32 +68,6 @@ public class Warehouse implements Serializable {
         return rooms.stream()
                 .map(Room::getUsageArea)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Warehouse)) return false;
-
-        Warehouse warehouse = (Warehouse) o;
-
-        if (getName() != null ? !getName().equals(warehouse.getName()) : warehouse.getName() != null) return false;
-        return getRooms() != null ? getRooms().equals(warehouse.getRooms()) : warehouse.getRooms() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getRooms() != null ? getRooms().hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Warehouse{" +
-                "name='" + name + '\'' +
-                ", rooms=" + rooms +
-                '}';
-    }
 }

@@ -45,7 +45,6 @@ public class Motorcycle extends Vehicle {
     public String toString() {
         return "Motorcycle{" +
                 "isApproved=" + isApproved +
-                "}";
-
+                "} " + super.toString();
     }
 }

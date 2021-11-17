@@ -42,7 +42,6 @@ public class WarehouseToTextFileDto {
 
             rtn.append(firstLine + stockdata);
         }
-
         return rtn.toString();
     }
 
@@ -55,12 +54,10 @@ public class WarehouseToTextFileDto {
             String firstLine = "\n" + "" + item.getName() + " volume: " + item.getVolume() + " m3" + "" + "";
             rtn.append(firstLine);
         }
-
         return rtn.toString();
     }
 
-    private static class RoomVolumeComparator implements Comparator<Room>{
-
+    private static class RoomVolumeComparator implements Comparator<Room> {
         @Override
         public int compare(Room o1, Room o2) {
             return o1.getUsageArea().compareTo(o2.getUsageArea());

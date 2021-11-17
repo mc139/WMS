@@ -17,15 +17,17 @@ public class Main {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("objects.bin"));
         List<Warehouse> warehouses = (ArrayList<Warehouse>) ois.readObject();
 
-        boolean shouldContinue = true;
         Warehouse chosenWarehouse = warehouses.get(0);
+        Person chosenPerson = UserInterface.initializePerson(chosenWarehouse);
+//        UserInterface.initalizeMainMenu(chosenPerson,chosenWarehouse);
+
+//        int userChoice = Integer.parseInt(scanner.nextLine());
+//        Person chosenPerson = UserInterface.getPerson(Integer.parseInt(scanner.nextLine()), chosenWarehouse);
+//
+//        UserInterface.displayHomeScreen(chosenPerson);
+
+        boolean shouldContinue = true;
         Scanner scanner = new Scanner(System.in);
-        UserInterface.displayPeople(chosenWarehouse);
-
-        int userChoice = Integer.parseInt(scanner.nextLine());
-        Person chosenPerson = UserInterface.getPerson(userChoice, chosenWarehouse);
-
-        UserInterface.displayHomeScreen(chosenPerson);
 
         while (shouldContinue) {
             int optionChosen = Integer.parseInt(scanner.nextLine());
@@ -77,8 +79,9 @@ public class Main {
                     Thread.sleep(200);
                     UserInterface.displayHomeScreen(chosenPerson);
             }
-
-
+            System.out.println("8. Home screen ");
+            System.out.println("9. LOGOUT ");
+            System.out.println("0. EXIT ");
         }
     }
 }

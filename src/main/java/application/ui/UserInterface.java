@@ -18,8 +18,18 @@ import java.util.stream.Collectors;
 
 public class UserInterface {
 
-    public static void saveCurrentWarehouseStatus(){
-        WarehouseToBinFileDto.save(Warehouse.warehouseExtention,Room.roomExtension,Item.itemExtention);
+    private static boolean shouldContinue;
+
+
+    public static Person initializePerson(Warehouse warehouse) {
+        UserInterface.displayPeople(warehouse);
+        Person person = UserInterface.getPerson(Integer.parseInt(new Scanner(System.in).nextLine()), warehouse);
+        UserInterface.displayHomeScreen(person);
+        return person;
+    }
+
+    public static void saveCurrentWarehouseStatus() {
+        WarehouseToBinFileDto.save(Warehouse.warehouseExtention, Room.roomExtension, Item.itemExtention);
         WarehouseToTextFileDto.process(Warehouse.warehouseExtention);
     }
 
@@ -27,10 +37,10 @@ public class UserInterface {
         displayEmptyRooms(warehouse);
         Room room = chooseRoom(Integer.parseInt(new Scanner(System.in).nextLine()), person);
         System.out.println("Are You Sure to rent this Y/N");
-        String answer =new Scanner(System.in).nextLine();
-        if(answer.equalsIgnoreCase("Y")){
+        String answer = new Scanner(System.in).nextLine();
+        if (answer.equalsIgnoreCase("Y")) {
             room.rentToPerson(person, LocalDate.now());
-        } else if (answer.equalsIgnoreCase("N")){
+        } else if (answer.equalsIgnoreCase("N")) {
             Thread.sleep(100);
             displayHomeScreen(person);
         } else {
@@ -95,7 +105,6 @@ public class UserInterface {
         System.out.println("0. EXIT ");
     }
 
-    //    wypisania swoich danych łącznie z wynajętymi pomieszczeniami,
     public static void displayPersonDetails(Person person) {
         System.out.println(person.getFirstName() + " " + person.getSurname());
         person.getRooms().stream()
@@ -147,4 +156,64 @@ public class UserInterface {
         }
         System.out.println("0. EXIT");
     }
+
+    //WAWALA
+//    public static void initalizeMainMenu(Person chosenPerson,Warehouse chosenWarehouse) throws InterruptedException {
+//        Scanner scanner = new Scanner(System.in);
+//        while (shouldContinue) {
+//            int optionChosen = Integer.parseInt(scanner.nextLine());
+//            switch (optionChosen) {
+//                case 1:
+//                    shouldContinue = true;
+//                    UserInterface.displayPersonDetails(chosenPerson);
+//                    break;
+//                case 2:
+//                    UserInterface.enquireRooms(chosenPerson);
+//                    shouldContinue = true;
+//                    break;
+//                case 3:
+//                    shouldContinue = true;
+//                    UserInterface.addItem(chosenPerson);
+//                    break;
+//                case 4:
+//                    shouldContinue = true;
+//                    UserInterface.removeItem(chosenPerson);
+//                    break;
+//                case 5:
+//                    shouldContinue = true;
+//                    UserInterface.displayEmptyRooms(chosenWarehouse);
+//                    break;
+//                case 6:
+//                    shouldContinue = true;
+//                    UserInterface.rentNewRoom(chosenPerson,chosenWarehouse);
+//                    break;
+//                case 7:
+//                    shouldContinue = true;
+//                    UserInterface.saveCurrentWarehouseStatus();
+//                    break;
+//                case 8:
+//                    shouldContinue = true;
+//                    UserInterface.displayHomeScreen(chosenPerson);
+//                    break;
+//                case 9:
+//                    UserInterface.displayPeople(chosenWarehouse);
+//                    int userChoice1 = Integer.parseInt(scanner.nextLine());
+//                    chosenPerson = UserInterface.getPerson(userChoice1, chosenWarehouse);
+//                    UserInterface.displayHomeScreen(chosenPerson);
+//                    shouldContinue = true;
+//                    break;
+//                case 0:
+//                    shouldContinue = false;
+//                    break;
+//                default:
+//                    System.out.println("Unknown option chosen !");
+//                    Thread.sleep(200);
+//                    UserInterface.displayHomeScreen(chosenPerson);
+//            }
+//            System.out.println("8. Home screen ");
+//            System.out.println("9. LOGOUT ");
+//            System.out.println("0. EXIT ");
+//        }
+
 }
+
