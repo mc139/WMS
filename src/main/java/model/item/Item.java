@@ -2,17 +2,24 @@ package model.item;
 
 import model.Room;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Item {
+public class Item implements Serializable {
+
+    private static final long serialVersionUID = 2801183849553406104L;
 
     private String name;
     private BigDecimal volume;
     private Room room;
+    public static List<Item> itemExtention = new ArrayList<>();
 
     public Item(String name, BigDecimal volume) {
         this.name = name;
         this.volume = volume;
+        itemExtention.add(this);
     }
 
     public String getName() {

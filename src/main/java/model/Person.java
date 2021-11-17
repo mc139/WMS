@@ -3,27 +3,29 @@ package model;
 import exception.DateNofFoundException;
 import exception.NeverRentException;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class Person {
+public class Person implements Serializable {
+
+    private static final long serialVersionUID = 2619746779516180098L;
 
     private List<Room> rooms = new ArrayList<>();
     private String firstName;
     private String surname;
-    private String peselNumber;
-    private Address address;
-    private LocalDate birthDate;
-     private LocalDate firstRentDate;
+    private transient String peselNumber;
+    private transient Address address;
+    private transient LocalDate birthDate;
+    private LocalDate firstRentDate;
+    public List<Person> personExtention = new ArrayList<>();
 
-    //todo peselNumber validation
     public Person(String firstName, String surname, String peselNumber, Address address, LocalDate birthDate) {
         this.firstName = firstName;
         this.surname = surname;
@@ -34,6 +36,14 @@ public class Person {
         } else {
             throw new IllegalArgumentException(peselNumber + "this pesel number is incorect!");
         }
+        personExtention.add(this);
+    }
+
+    public static List<Room> getRooms(Person person) {
+        return  Optional.ofNullable(person.getRooms()).orElse(Collections.emptyList()).stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
     }
 
     private LocalDate getOldestDate(List<LocalDate> dates) {
@@ -96,7 +106,7 @@ public class Person {
     }
 
     public LocalDate getFirstRentDate() {
-        if (rooms.isEmpty()|| rooms.size() ==0) {
+        if (rooms.isEmpty() || rooms.size() == 0) {
             throw new NeverRentException("Person "
                     + this.getFirstName()
                     + " " + this.getSurname()

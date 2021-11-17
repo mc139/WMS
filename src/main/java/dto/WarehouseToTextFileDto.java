@@ -11,20 +11,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class WarehouseToFileDto {
+public class WarehouseToTextFileDto {
 
+    //ToDo - rosnacą wedlug rozmiaru pomieszcznia
     private final static String dir = "/Users/Programowanie/Desktop/WMS/";
 
     public static void process(List<Warehouse> warehouses) {
         warehouses.sort(new WarehouseVolumeComparator());
 
-//        Warehouse warehouse;
-
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(dir + "stockStatus.txt"))) {
             for (int i = 0; i < warehouses.size(); i++) {
                 Warehouse warehouse = warehouses.get(i);
                 bufferedWriter.write("[[" + warehouse.getName().toUpperCase(Locale.ROOT) + " | Total Warehouse area :" + warehouse.getVolume() + "]]\n");
-                bufferedWriter.write(WarehouseToFileDto.prepareWarehouseData(warehouse) + "");
+                bufferedWriter.write(WarehouseToTextFileDto.prepareWarehouseData(warehouse) + "");
                 bufferedWriter.write("||||||||||||||||||||||||||||||||||||||||||" + "\n");
                 bufferedWriter.write("||||||||||||||||||||||||||||||||||||||||||" + "\n");
             }
@@ -33,15 +32,13 @@ public class WarehouseToFileDto {
         }
     }
 
-
     private static String prepareWarehouseData(Warehouse warehouse) {
+        warehouse.getRooms().sort(new RoomVolumeComparator().reversed());
         StringBuilder rtn = new StringBuilder();
-//        String name = warehouse.getName();
         for (int i = 0; i < warehouse.getRooms().size(); i++) {
             Room room = warehouse.getRooms().get(i);
             String firstLine = room.getName() + "| Total usage area: " + room.getUsageArea() + "\n| Area left : " + room.getAreaLeftInTheRoom() + "\n";
-//            String content = WarehouseToFileDto.getContentAsString(room);
-            String stockdata = "[[--------------------------------]]" + WarehouseToFileDto.prepareStockData(room.getItems()) + "\n[[--------------------------------]]\n";
+            String stockdata = "[[--------------------------------]]" + WarehouseToTextFileDto.prepareStockData(room.getItems()) + "\n[[--------------------------------]]\n";
 
             rtn.append(firstLine + stockdata);
         }
@@ -62,15 +59,12 @@ public class WarehouseToFileDto {
         return rtn.toString();
     }
 
-    private static String getContentAsString(Room room) {
-        String rtn = "";
-        List<Item> items = room.getItems();
-        items.sort(new ItemVolumeComparator());
-        for (int i = 0; i < items.size(); i++) {
-            rtn += items.get(i);
+    private static class RoomVolumeComparator implements Comparator<Room>{
 
+        @Override
+        public int compare(Room o1, Room o2) {
+            return o1.getUsageArea().compareTo(o2.getUsageArea());
         }
-        return rtn;
     }
 
     private static class ItemVolumeComparator implements Comparator<Item> {

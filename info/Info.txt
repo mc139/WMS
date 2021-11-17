@@ -1,2 +1,31 @@
 //Todo refaktor.."
-//github
+//github V
+//relacje V
+// zapisaywanie stanu do pliku V
+// cała serializacja V
+// todo UI V
+//ToDo rozroznienie przedmiotów przy ich dodawaniu w UI (item , vahicle etc)
+//Todo Zawartość pomieszczenia powinna być posortowana malejąco według rozmiaru przedmiotu, jeśli jest taki sam to według nazwy.
+//ToDo Unit Testy
+//ToDo Lombok
+//ToDo przenoszenie metod do odpowiedznich klas - prawie zrobione
+//Todo zapisawanie do pliku
+//Todo bugi?
+
+    //ToDo refaktor do osobnych metod w klasie UserInterface
+    //ToDo zapisywanie nie działa coś z serializacja
+
+
+ Zawartość pomieszczenia powinna być posortowana malejąco według rozmiaru przedmiotu, jeśli jest taki sam to według nazwy.
+ Zawartość magazynu powinna być posortowana rosnąco według rozmiaru pomieszczenia.
+
+ W metodzie main należy utworzyć magazyn wraz z co najmniej dziesięcioma gotowymi pomieszczeniami różnego rozmiaru oraz kilka (minimum 5) gotowych osób.
+ Po uruchomieniu programu, użytkownik powinien mieć możliwość za pośrednictwem konsoli poleceń:
+ o zakończenia programu w dowolnym momencie,
+ o wybrania którą jest osobą,
+ o wypisania swoich danych łącznie z wynajętymi pomieszczeniami,
+ o wybrania pomieszczenia które wynajmuje dana osoba oraz wyświetlenia zawartości pomieszczenia,
+ o włożenia nowych pojazdów/przedmiotów pamiętając, aby nie przepełnić pomieszczenia,
+ o wyjęcia przedmiotów lub pojazdów,
+ o wyświetlenia wolnych pomieszczeń,
+ o wynajęcia nowego pomieszczenia, po uprzednim jego wybraniu, wykonania polecenia zapisującego aktualny stan magazynu do pliku.

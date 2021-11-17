@@ -8,6 +8,7 @@ public abstract class Vehicle extends Item {
 
     public Vehicle(String name, BigDecimal volume) {
         super(name, volume);
+        Item.itemExtention.add(this);
     }
 
     @Override

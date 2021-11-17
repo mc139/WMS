@@ -3,6 +3,7 @@ package model;
 import exception.TooManyThingsException;
 import model.item.Item;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +12,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Room {
+public class Room implements Serializable {
+
+
+    private static final long serialVersionUID = 7264303386964383581L;
 
     private Warehouse warehouse;
     private String name;
@@ -22,12 +26,14 @@ public class Room {
     private static AtomicInteger ID_GENERATOR = new AtomicInteger(1000);
     private List<Item> items = new ArrayList<>();
     private LocalDate dateOfRenting;
+    public static List<Room> roomExtension = new ArrayList<>();
 
     public Room(boolean isOutOfService, double width, double height, double length) {
         this.isOutOfService = isOutOfService;
         this.usageArea = BigDecimal.valueOf(width * height * length);
         this.id = ID_GENERATOR.getAndIncrement();
         this.name = "Room: " + ID_GENERATOR.get();
+        roomExtension.add(this);
     }
 
     public void rentToPerson(Person person,LocalDate dateOfRenting) {
